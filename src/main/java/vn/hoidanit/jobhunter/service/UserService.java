@@ -38,6 +38,11 @@ public class UserService {
     }
 
     public User handleUpdateUsers(User user) {
-        return this.userRepository.save(user);
+        User userCurrent = handleGetUser(user.getId());
+        userCurrent.setEmail(user.getEmail());
+        userCurrent.setName(user.getName());
+        userCurrent.setPassword(user.getPassword());
+
+        return this.userRepository.save(userCurrent);
     }
 }
